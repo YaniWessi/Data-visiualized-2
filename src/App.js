@@ -1,11 +1,14 @@
 import React from 'react';
-import StoresList from './Components/storesList';
+import "./App.css"
+import MapVisiual from './Components/map';
 
 
 function App() {
   return (
     <div className="App">
-    <StoresList/>
+    hello world 
+    {/* <StoresList/> */}
+    <MapVisiual/>
     </div>
   );
 }
