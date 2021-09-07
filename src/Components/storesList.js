@@ -1,9 +1,9 @@
-import React,{ useState, useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
 import { 
     Card, CardText, CardBody, CardLink,
     CardTitle, CardSubtitle, 
 } from 'reactstrap';
+import Search from "./search"
 
 
 
@@ -24,24 +24,17 @@ const renderCard = (store, index) => {
 }
 
 
-const StoresList = () => {
+const StoresList = (props) => {
+    return(       
+    <>
+    <div className="search-list">
+    <Search props={props}/>
+    <div className="store-list">
 
-
-    const [store, setStore] = useState([''])
-
-
-    useEffect(() =>{
-        axios.get('https://www.easyfoodstamps.com/cms/stores')
-          .then(res => setStore(res.data.stores))
-        //   .then(res => console.log(res.data))
-          .catch()
-        }, []);
-
-
-    return(
-    <div>
-        {store.map(renderCard)}
+        {props.store.map(renderCard)}
     </div> 
+    </div>
+    </>
     )
 }
 

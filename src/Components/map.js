@@ -1,22 +1,27 @@
 import React from 'react'; 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-
-const MapVisiual = () => {
+const MapVisiual = (props) => {
 
     const position = [40.712776, -74.005974]
 
     return (
-    <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+    <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
     <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-    <Marker position={position}>
-        <Popup>
+    
+    {props.store.map(stores => {
+      return  <Marker key={stores.objectid} position={[stores.latitude, stores.longitude]}/> 
+    })}
+
+
+
+        {/* <Popup>
         A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-    </Marker>
+        </Popup> */}
+    {/* </Marker> */}
   </MapContainer>
     )
 }
