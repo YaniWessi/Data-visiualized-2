@@ -3,7 +3,8 @@ import {
     Card, CardText, CardBody, CardLink,
     CardTitle, CardSubtitle, 
 } from 'reactstrap';
-import Search from "./search"
+// import Search from "./search"
+
 
 
 
@@ -24,11 +25,14 @@ const renderCard = (store, index) => {
 }
 
 
+
 const StoresList = (props) => {
+
+
     return(       
     <>
     <div className="search-list">
-    <Search props={props}/>
+    {/* <Search props={props}/> */}
     <div className="store-list">
 
         {props.store.map(renderCard)}

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 const MapVisiual = (props) => {
 
-    const position = [40.712776, -74.005974]
+    const position = props.cords
 
     return (
     <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
