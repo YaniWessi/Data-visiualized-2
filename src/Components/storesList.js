@@ -4,6 +4,7 @@ import {
     CardTitle, CardSubtitle, 
 } from 'reactstrap';
 // import Search from "./search"
+import useGoogleMap from "../customHooks/useGoogleMap";
 
 
 
@@ -26,16 +27,15 @@ const renderCard = (store, index) => {
 
 
 
-const StoresList = (props) => {
-
-
+const StoresList = () => {
+  const { stores } = useGoogleMap()
     return(       
     <>
     <div className="search-list">
     {/* <Search props={props}/> */}
     <div className="store-list">
 
-        {props.store.map(renderCard)}
+        {stores.map(renderCard)}
     </div> 
     </div>
     </>

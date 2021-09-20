@@ -1,19 +1,24 @@
 import React from 'react'; 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import useGoogleMap from '../customHooks/useGoogleMap';
+import useLocalStorage from '../customHooks/useLocalStorage';
 
-const MapVisiual = (props) => {
+const MapVisiual = () => {
 
-    const position = props.cords
+    const { location: position } = useLocalStorage();
+    const { stores } = useGoogleMap();
 
+   console.log("this is it", position, stores,)
+   
     return (
     <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
     <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-    
-    {props.store.map(stores => {
-      return  <Marker key={stores.objectid} position={[stores.latitude, stores.longitude]}/> 
+
+    {stores.map(store => {
+      return  <Marker key={store.objectid} position={[store.latitude, store.longitude]}/> 
     })}
 
 

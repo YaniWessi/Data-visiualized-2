@@ -2,26 +2,27 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { storecontexts } from "../context/storecontexts";
 import { searchcontexts } from "../context/searchcontexts";
+
 const GoogleData = () => {
 
-    const { cords } = useContext(searchcontexts)
+    const { coords } = useContext(searchcontexts)
     const { setStore } = useContext(storecontexts)
 
     const [location, setLocation] = useState({
-        lat:39.550053,
-        long:-105.782066
+        lat:40.712776,
+        long:-74.005974
     })
 
     useEffect(() => {
-        console.log('these cords', cords.lat, cords.long)
-        if(cords.lat && cords.long){
-            console.log('these cord', cords.lat, cords.long)
+        console.log('these cords', coords.lat, coords.long)
+        if(coords.lat && coords.long){
+            console.log('these cord', coords.lat, coords.long)
             setLocation({
-                lat:cords.lat, 
-                long: cords.long
+                lat:coords.lat, 
+                long: coords.long
             })
         }
-    },[cords])
+    },[coords])
 
    const {lat, long} = location
 

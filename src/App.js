@@ -1,55 +1,29 @@
-import React, { useContext, useMemo, useState, useEffect} from 'react';
-import {searchcontexts} from './context/searchcontexts';
-import { storecontexts } from './context/storecontexts';
+import React from 'react';
 import "./App.css";
-import axios from 'axios';
 import MapVisiual from './Components/map';
 import StoresList from './Components/storesList';
 import Search from "./Components/search";
+import useGoogleMap from './customHooks/useGoogleMap'
 // import Data from "./Components/data"
 
 
 
 
 function App() {
-
-  const [cords, setCords ] = useState({
-    lat: null,
-    long: null
-  })
- const [store, setStore] = useState([])
- const searchValue = useMemo(() => ({cords, setCords}), [cords, setCords] ) 
-const storeValue = useMemo(()=> ({store, setStore}),[store, setStore])
+  const { stores, location } = useGoogleMap();
+  
   
 
-  const lat = 39.550053
-  const long = -105.782066
-
-  const cord = [lat,long]
- 
-  useEffect(() =>{
-    axios.get(`https://www.easyfoodstamps.com/cms/stores?latitude=${lat}&longitude=${long}`)
-      .then(res => setStore(res.data.stores))
-    //   .then(res => console.log(res.data))
-      .catch()
-    }, [setStore]);
-
-
   return ( 
-    
-    <searchcontexts.Provider value={searchValue}>
-    <storecontexts.Provider value={storeValue}>
+
     <div className="App">
     <div className="under-app">
     {/* <Data/> */}
-    <Search store={store} cord={cord}/>
-    <StoresList store={store} cord={cord}/>
+    <Search store={stores} cord={location}/>
+    <StoresList store={stores} cord={location}/>
     </div>
-    <MapVisiual store={store} cord={cord}/> 
+    <MapVisiual store={stores} cord={location}/> 
     </div>
-    </storecontexts.Provider>
-    </searchcontexts.Provider>
-    
     
   );
 }
