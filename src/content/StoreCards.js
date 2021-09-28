@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import { storeContext } from "../context/storeContext"
 import GeoLocationForm from './GeoLocationForm';
-import StoreCard from "../components/StoreCard"
+import StoreCard from "../Components/StoreCard"
 
 const StoreCards = () => {
     const {stores} = useContext(storeContext)

@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import {MapContainer, TileLayer, Marker } from 'react-leaflet';
 import {geoLocationContext} from '../context/geoLocationContext';
 import {storeContext} from "../context/storeContext"
-import ChangeMap from "../components/ChangeMap";
+import ChangeMap from '../Components/ChangeMap';
 
 
 const GeoMap = () => {
