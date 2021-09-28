@@ -1,31 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./App.css";
-import MapVisiual from './Components/map';
-import StoresList from './Components/storesList';
-import Search from "./Components/search";
-import useGoogleMap from './customHooks/useGoogleMap'
-// import Data from "./Components/data"
-
+import { geoLocationContext } from './context/geoLocationContext';
+import { storeContext } from './context/storeContext';
+import GeoMap from "./content/GeoMap";
+import StoreCards from './content/StoreCards'
 
 
 
 function App() {
-  const { stores, location } = useGoogleMap();
-  
-  
+  const [geoData, setGeoData] = useState({ lat: null, lon: null })
+  const [stores, setStores] = useState([])
 
-  return ( 
-
-    <div className="App">
-    <div className="under-app">
-    {/* <Data/> */}
-    <Search store={stores} cord={location}/>
-    <StoresList store={stores} cord={location}/>
-    </div>
-    <MapVisiual store={stores} cord={location}/> 
-    </div>
-    
-  );
+  return (
+   <div className="App">
+      <geoLocationContext.Provider value={{geoData, setGeoData}}>
+      <storeContext.Provider value={{stores, setStores}}>
+        <StoreCards/>
+        <GeoMap/>
+      </storeContext.Provider>
+    </geoLocationContext.Provider>
+   </div>
+  )
 }
 
 export default App;
