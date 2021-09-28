@@ -1,34 +1,26 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import "./App.css";
-import axios from 'axios';
-import MapVisiual from './Components/map';
-import StoresList from './Components/storesList';
-
+import { geoLocationContext } from './context/geoLocationContext';
+import { storeContext } from './context/storeContext';
+import GeoMap from "./content/GeoMap";
+import StoreCards from './content/StoreCards'
 
 
 
 function App() {
-
- 
-  const [store, setStore] = useState([])
-
-
-  useEffect(() =>{
-    axios.get('https://www.easyfoodstamps.com/cms/stores')
-      .then(res => setStore(res.data.stores))
-    //   .then(res => console.log(res.data))
-      .catch()
-    }, [setStore]);
-
+  const [geoData, setGeoData] = useState({ lat: null, lon: null })
+  const [stores, setStores] = useState([])
 
   return (
-    <>
-    <div className="App">
-    <StoresList store={store}/>
-    <MapVisiual store={store}/>
-    </div>
-    </>
-  );
+   <div className="App">
+      <geoLocationContext.Provider value={{geoData, setGeoData}}>
+      <storeContext.Provider value={{stores, setStores}}>
+        <StoreCards/>
+        <GeoMap/>
+      </storeContext.Provider>
+    </geoLocationContext.Provider>
+   </div>
+  )
 }
 
 export default App;
