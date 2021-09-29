@@ -7,12 +7,15 @@ const StoreCards = () => {
     const {stores} = useContext(storeContext)
 
     return (
-        <div className="store-card">
+        <div className="form">
             <GeoLocationForm/>
-            {stores?.map(store => {
-                return <StoreCard store={store}/>
-            })}
-        </div>
+      
+            <div className="store-card"> 
+                {stores?.map(store => {
+                    return <StoreCard store={store} />
+                })}
+            </div>
+        </div>  
     )
 }
 
