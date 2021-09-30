@@ -10,7 +10,7 @@ const StoreCards = () => {
         <div className="form">
             <GeoLocationForm/>
       
-            <div className="store-card"> 
+            <div className="StoreCards"> 
                 {stores?.map(store => {
                     return <StoreCard store={store} />
                 })}
