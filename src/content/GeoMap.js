@@ -8,9 +8,10 @@ import ChangeMap from '../components/ChangeMap';
 const GeoMap = () => {
     const { stores } = useContext(storeContext)
     const { geoData } = useContext(geoLocationContext)
+    const zoom = 4; // city level
 
     return (
-        <MapContainer center={geoData} zoom={13} scrollWheelZoom={true}>
+        <MapContainer center={geoData} zoom={zoom} scrollWheelZoom={true}>
             <TileLayer 
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
