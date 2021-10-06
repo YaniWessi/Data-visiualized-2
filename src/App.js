@@ -11,6 +11,8 @@ function App() {
   const [geoData, setGeoData] = useState({ lat: null, lon: null })
   const [stores, setStores] = useState([])
 
+
+
   return (
    <div className="App">
       <geoLocationContext.Provider value={{geoData, setGeoData}}>
